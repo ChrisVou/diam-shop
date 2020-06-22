@@ -12,7 +12,7 @@ import Header from './components/header/header.component';
 function App() {
   return (
     <div >
-    {/* Vazoume to Header eksw apo to Switch kai to Route giati
+    {/* Vazoume to Header component eksw apo to Switch kai to Route giati
       To Header kanei render prin to Switch kai to Route.
       Kseroume oti i page mas einai mesa sto Switch kai to header mas
       mesa sto Header */}
