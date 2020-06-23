@@ -19,4 +19,16 @@
     color: black;
     border: 1px solid black;
   }
+
+  //me to & leme na to efarmosei kai sto custom button class, ama pame to velakei panw sto & tha to doume
+  // kai an to diagrapsoume tha doume pou to efarmozei
+  &.google-sign-in {
+    background-color: #4285f4;
+    color: white;
+
+    &:hover {
+      background-color: #357ae8;
+      border: none;
+    }
+  }
 }
