@@ -7,7 +7,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 //Opote kanei kapoios xristis login me to "Sign in with google"
 //theloume na apothikevoume ta stoixeia tou user object gia na boroume
@@ -29,10 +29,29 @@ componentDidMount() {
   //O user einai o telefteos xristos pou kaname login me to Sign in with google button
   //Me afton ton trwpo an den kanoume sign out apo ton xristi mas kathe fora
   // pou tha epistrefoume sto site tha mas exei kratimeno ton user pou kaname login
-  this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-    this.setState({ currentUser: user });
+  this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    //Otan enas user kanei login elenxei an sto if an ondws exei kanei login o user
+    if (userAuth) {
+      //An iparxei idi ena document mesa stin firebase me ton user pou ekane login
+      //tote pernoume ta stixeia tou kai ta vazoume sto userRef, an den iparxoun ta stoixeia tou
+      // tote paei sto firebase.utils.js arxeio kai dimiourgei enan kainourgio user me ta stoixeia tou vlepe mesa sto try - catch
+      const userRef = createUserProfileDocument(userAuth);
 
-    console.log(user);
+      //Edw ftiaxoume tin state tou local app me ta stoixeia tou user
+      (await userRef).onSnapshot(snapShot => {
+        this.setState({
+          currentUser: {
+            id: snapShot.id,
+            ...snapShot.data()
+          }
+        });
+
+        console.log(this.state);
+      });
+    } else {
+      //An o user kanei log out thetoume to currentUser: null pou pernoume pisw apo to userAuth
+      this.setState({currentUser: userAuth});
+    }
   });
 }
 
