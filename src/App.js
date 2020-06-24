@@ -45,8 +45,6 @@ componentDidMount() {
             ...snapShot.data()
           }
         });
-
-        console.log(this.state);
       });
     } else {
       //An o user kanei log out thetoume to currentUser: null pou pernoume pisw apo to userAuth

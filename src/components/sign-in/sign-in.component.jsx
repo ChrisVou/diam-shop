@@ -3,7 +3,7 @@ import React from 'react';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom.button.component';
 
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 import './sign-in.styles.scss';
 
@@ -17,14 +17,21 @@ class SignIn extends React.Component {
     }
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     //xrisimopoioume to preventDefault gia na exoume pliri elengxo stin form mas 
     // otan kanoume submit
     event.preventDefault();
 
-    //Afti tin stigmi otan patame submit kanoume clear to email kai password fields
-    this.setState({ email: '', password: '' })
-  }
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      //Afti tin stigmi otan patame submit kanoume clear to email kai password fields (diladi kanoume clear tin state)
+      this.setState({ email: '', password: '' })
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   handleChange = event => {
     const { value, name } = event.target;
