@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './App.css';
 
@@ -8,6 +9,7 @@ import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { setCurrentUser } from './redux/user/user.action';
 
 //Opote kanei kapoios xristis login me to "Sign in with google"
 //theloume na apothikevoume ta stoixeia tou user object gia na boroume
@@ -15,17 +17,19 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 //giafto kai tha alaksoume to App component se class
 
 class App extends React.Component {
-constructor() {
-  super();
+// constructor() {
+//   super();
 
-  this.state = {
-    currentUser: null
-  };
-}
+//   this.state = {
+//     currentUser: null
+//   };
+// }
 
 unsubscribeFromAuth = null
 
 componentDidMount() {
+  const {setCurrentUser} = this.props;
+
   //O user einai o telefteos xristos pou kaname login me to Sign in with google button
   //Me afton ton trwpo an den kanoume sign out apo ton xristi mas kathe fora
   // pou tha epistrefoume sto site tha mas exei kratimeno ton user pou kaname login
@@ -39,16 +43,21 @@ componentDidMount() {
 
       //Edw ftiaxoume tin state tou local app me ta stoixeia tou user
       (await userRef).onSnapshot(snapShot => {
-        this.setState({
-          currentUser: {
-            id: snapShot.id,
-            ...snapShot.data()
-          }
+        // this.setState({
+        //   currentUser: {
+        //     id: snapShot.id,
+        //     ...snapShot.data()
+        //   }
+        // });
+        setCurrentUser({
+          id: snapShot.id,
+          ...snapShot.data()
         });
       });
     } else {
       //An o user kanei log out thetoume to currentUser: null pou pernoume pisw apo to userAuth
-      this.setState({currentUser: userAuth});
+      //this.setState({currentUser: userAuth});
+      setCurrentUser(userAuth);
     }
   });
 }
@@ -68,7 +77,8 @@ componentWillUnmount() {
         mesa sto Header */}
         {/* An einai kaino tha perasei null mesa sto header component,
           allios tha perasei ton user */}
-        <Header currentUser={this.state.currentUser} />
+        {/*<Header currentUser={this.state.currentUser} />*/}
+        <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
@@ -79,7 +89,11 @@ componentWillUnmount() {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(App);
 
 /* To Route einai ena component pou pernei kapoia arguments: 
       To component pou leme pio component theloume na render
