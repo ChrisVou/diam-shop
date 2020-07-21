@@ -42,8 +42,11 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
+
+//to state einai to root-reducer.js
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser
 })
 
+//to connect tha to xrisimopoioume opou tha xreiazomaste properties apo to reducer
 export default connect(mapStateToProps)(Header);

@@ -90,9 +90,14 @@ componentWillUnmount() {
 }
 
 const mapDispatchToProps = dispatch => ({
+  //to setCurrentUser object exei mia function tin user
+  // opou kalei to dispatch.
+  //to dispatch einai enas tropos tis redux gia na tis pei oti object mou 
+  // peraseis tha einai ena action object opou tha to perasw se kathe reducer
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
+// Xrisimopoioume tin connect gia na boroume na xrisimopoieisoume properties apo tin reducer
 export default connect(null, mapDispatchToProps)(App);
 
 /* To Route einai ena component pou pernei kapoia arguments: 
