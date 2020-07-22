@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utils.js';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CardDropdown from '../cart-dropdown/cart-dropdown.component';
 
 //Isagoume to Logo mas pou einai .svg file
 //to { ReactComponent as Logo } einai special syntax in React for importing SVG
@@ -11,7 +13,7 @@ import { ReactComponent as Logo } from '../../assets/diam.svg';
 import './header.styles.scss';
 
 //Destructured the currentUser property pou kanoume pass apo to Header sto App.js
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
   <div className='header'>
   {/* Xrisimopoioume to Link apo to react-router-dom kai opote patame pano sto logo mas mas pei sto 
     homepage to="/" */}
@@ -31,21 +33,24 @@ const Header = ({ currentUser }) => (
         //An einai false diladi den tha eimaste login me kapoio user (epistrefei null diladi false)
         //tha emfanizetai to Link sign in gia na kanoume signin me kapoio account 
         //to signOut() mas to parexei i firebase auth den to grapsame emeis
-        currentUser ?
+        currentUser ? (
         <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>
-        :
+        ) : (
         <Link className='option' to='/signin'>
           SIGN IN
         </Link>
-      }
+      )}
+      <CartIcon />
     </div>
+    { hidden ? null : <CardDropdown /> }
   </div>
 );
 
 
 //to state einai to root-reducer.js
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = ({user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden
 })
 
 //to connect tha to xrisimopoioume opou tha xreiazomaste properties apo to reducer
