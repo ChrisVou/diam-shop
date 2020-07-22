@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -82,12 +82,28 @@ componentWillUnmount() {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
-          <Route path='/signin' component={SignInAndSignUpPage} />
+          {/* Afto to kanoume gia na poume oti otan kapios kanei signin me to account tou, na min borei na dei tin page /signin
+            alla na ginete redirect stin homepage diladi '/', an kanei signout tote borei na vlepei tin page /signin */}
+          <Route 
+            exact 
+            path='/signin' 
+            render={() => 
+              this.props.currentUser ? (
+                <Redirect to='/' />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            } 
+          />
         </Switch> 
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+});
 
 const mapDispatchToProps = dispatch => ({
   //to setCurrentUser object exei mia function tin user
@@ -98,7 +114,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Xrisimopoioume tin connect gia na boroume na xrisimopoieisoume properties apo tin reducer
-export default connect(null, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+  )(App);
 
 /* To Route einai ena component pou pernei kapoia arguments: 
       To component pou leme pio component theloume na render
