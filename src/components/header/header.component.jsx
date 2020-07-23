@@ -42,12 +42,20 @@ const Header = ({ currentUser, hidden }) => (
       )}
       <CartIcon />
     </div>
+    {/* An to hidden einai true tote render null (tipota) alliws an to hidden einai false kanemou render
+      to CardDropdown kai tha katevei to dropdown otan patame to icon tou shop bag mas */}
     { hidden ? null : <CardDropdown /> }
   </div>
 );
 
 
 //to state einai to root-reducer.js
+//Enas more advanced way gia na kanoume destructure
+//Mesa apo to root-reducer.js kanoume destrucure to user kai mesw tou root-reducer.js 
+//kanoume destructure to currentUser pou vriskete sto user.reducer.js
+//to idio kai me to cart, ginete destructure mesa apo to root-reducer.js kai meta 
+//to hidden ginete kai afto destructure pou vriskete sto cart.reducer.js
+//KANOUME DESTRUCTURE NESTED VALUES
 const mapStateToProps = ({user: { currentUser }, cart: { hidden } }) => ({
   currentUser,
   hidden
