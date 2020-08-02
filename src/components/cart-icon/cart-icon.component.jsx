@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import { toggleCartHiden } from '../../redux/cart/cart.actions';
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
@@ -19,11 +20,8 @@ const mapDispatchToProps = dispatch => ({
   toggleCartHiden: () => dispatch(toggleCartHiden())
 });
 
-//Xrisimopoioume tin reduce gia na prosthesoume ola ta quantity apo ta proionda pou
-//vazoume mesa sto kalathi agorwn kai na emfanisoume to sinoliko arithmo
-//ton proiondon mas mesa sto bag icon pou vriskete sto menu mas dipla apo to sign in - sign out
-const mapStateToProps = state => ({
-  itemCount: selectCartItemsCount(state)
+const mapStateToProps = createStructuredSelector({
+  itemCount: selectCartItemsCount
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
