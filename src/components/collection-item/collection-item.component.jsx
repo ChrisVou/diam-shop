@@ -30,7 +30,7 @@ const CollectionItem = ({ item, addItem }) => {
         <span className='price'>{price}</span>
       </div>
       {/* Otan kanoume click sto CustomButton na ginete fired kai na kalei to addItem kai na pernaei mesa to item
-       */}
+        ([#.12]) */}
       <CustomButtom onClick={() => addItem(item)} inverted>
         Add to cart
       </CustomButtom>
