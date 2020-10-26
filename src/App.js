@@ -8,8 +8,12 @@ import './App.css';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
+
 import Header from './components/header/header.component';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
 import { setCurrentUser } from './redux/user/user.action';
 import { selectCurrentUser } from './redux/user/user.selector';
 
@@ -86,6 +90,7 @@ class App extends React.Component {
           <Route path='/shop' component={ShopPage} />
           {/* Afto to kanoume gia na poume oti otan kapios kanei signin me to account tou, na min borei na dei tin page /signin
             alla na ginete redirect stin homepage diladi '/', an kanei signout tote borei na vlepei tin page /signin */}
+          <Route exact path='/checkout' component={CheckoutPage} />
           <Route
             exact
             path='/signin'

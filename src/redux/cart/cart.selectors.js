@@ -13,7 +13,7 @@ const selectCart = state => state.cart;
 //to prwto arguments einai ena collection diladi ena array apo input selectors
 //kai to deftero argument einai ena function pou tha epistrefei tin value
 //pou theloume apo afto ton selector
-//Epidi xrisimopoioume tin createSelector to seelectCartItems einai memory selector
+//Epidi xrisimopoioume tin createSelector to selectCartItems einai memory selector
 export const selectCartItems = createSelector(
   [selectCart],
   cart => cart.cartItems
@@ -36,3 +36,13 @@ export const selectCartItemsCount = createSelector(
       0
     )
 );
+
+export const selectCartTotal = createSelector(
+  [selectCartItems],
+  cartItems =>
+  cartItems.reduce(
+    (accumalatedQuantity, cartItem) =>
+      accumalatedQuantity + cartItem.quantity * cartItem.price,
+    0
+  )
+)
