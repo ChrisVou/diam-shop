@@ -8,12 +8,14 @@ export const selectCollections = createSelector(
   shop => shop.collections
 );
 
+//To Object.keys metatrepei to collections se array kai pernei ta key
+//px to object {a: 1, a: 2} tha ginei array ["a", "b"]
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
   collections => Object.keys(collections).map(key => collections[key])
 );
 
-//Theloume to collection.id url nai einai idio === me to COLLECTION_ID_MAP url
+//Data Normalization onomazete otan apothikevoume listes apo dedomena mesa se object andi gia array
 export const selectCollection = collectionUrlParam =>
   createSelector(
     [selectCollections],
