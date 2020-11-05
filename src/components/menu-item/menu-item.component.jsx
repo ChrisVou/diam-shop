@@ -3,21 +3,21 @@ import { withRouter } from 'react-router-dom';
 
 import './menu-item.styles.scss';
 
-//Kanoume destructuring apo to props to (title, imageUrl kai size)
-//To size einai gia tis 2 fwtografies (WOMENS, MENS) pou einai megaliteres apo tis alles tris
+/* .Kanoume destructuring apo to props to (title, imageUrl kai size)
+To size einai gia tis 2 fwtografies (WOMENS, MENS) pou einai megaliteres apo tis alles tris
+  .Otan sto size pernaei i timi large tote an pame sto scss 
+  vlepoume oti energopioite to &.large class pou einai mesa
+  sto .menu-item class
+  Otan kanoume click panw sto menu-item mas paei sto /shop/hats page 
+  .Javascript template strings, me auto ton tropo (style) kanoume dynamic style sta component mas */
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
-  //Otan sto size pernaei i timi large tote an pame sto scss 
-  //vlepoume oti energopioite to &.large class pou einai mesa
-  //sto .menu-item class
-  //Otan kanoume click panw sto menu-item mas paei sto /shop/hats page 
   <div 
     className={`${size} menu-item`} 
     onClick={() => history.push(`${match.url}${linkUrl}`)}
   >
     <div 
       className='background-image' 
-      style={{
-        //Javascript template strings, me auto ton tropo (style) kanoume dynamic style sta component mas
+      style={{  
         backgroundImage: `url(${imageUrl})`
       }} 
     />
@@ -29,12 +29,12 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
 );
 
 export default withRouter(MenuItem);
-//Edw vazoume withRouter(MenuItem) kai mas epistrefei ena super powered
-//MenuItem component me prosvasi sto history, match ktl...
+/* Edw vazoume withRouter(MenuItem) kai mas epistrefei ena super powered
+MenuItem component me prosvasi sto history, match ktl...
 
 
-//Ta className einai emfolevmena (nested) opws akrivos kai sto
-//menu-item.styles.scss arxeio mas
+Ta className einai emfolevmena (nested) opws akrivos kai sto
+menu-item.styles.scss arxeio mas */
 
 
 /* withRouter   You can get access to the history object’s properties and 

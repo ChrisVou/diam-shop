@@ -17,16 +17,19 @@ class SignIn extends React.Component {
     }
   }
 
+/*  .xrisimopoioume to preventDefault gia na exoume pliri elengxo stin form mas 
+    otan kanoume submit
+     .Afti tin stigmi otan patame submit kanoume clear to email kai password fields (diladi kanoume clear tin state) 
+    .Thetoume dynamic tin property value
+    An px grapsoume sto email: chrisvou@hotmail.com tote tha ginei [email]: chrisvou@hotmail.com
+    kai an grapsoume sto password: 12345@ tote tha ginei [password]: 12345@ */
   handleSubmit = async event => {
-    //xrisimopoioume to preventDefault gia na exoume pliri elengxo stin form mas 
-    // otan kanoume submit
     event.preventDefault();
 
     const { email, password } = this.state;
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      //Afti tin stigmi otan patame submit kanoume clear to email kai password fields (diladi kanoume clear tin state)
       this.setState({ email: '', password: '' })
     } catch (error) {
       console.log(error);
@@ -35,27 +38,24 @@ class SignIn extends React.Component {
 
   handleChange = event => {
     const { value, name } = event.target;
-
-    //Thetoume dynamic tin property value
-    //An px grapsoume sto email: chrisvou@hotmail.com tote tha ginei [email]: chrisvou@hotmail.com
-    //kai an grapsoume sto password: 12345@ tote tha ginei [password]: 12345@
     this.setState({ [name]: value })
   }
 
+  /* Kaloume tin handleSubmit kai otan kanoume submit tin forma mas kanei clear ta 2 fields
+   Afto to label einai pou pernei ws props sto form-input.component.jsx
+    Afto to label einai pou pernei ws props sto form-input.component.jsx */
   render() {
     return(
       <div className='sign-in'>
          <h2>I already have an account</h2>
          <span>Sign in with your email and password</span>
-        
-         {/* Kaloume tin handleSubmit kai otan kanoume submit tin forma mas kanei clear ta 2 fields */}
          <form onSubmit={this.handleSubmit}>
           <FormInput 
             name="email" 
             rype="email" 
             value={this.state.email} 
             handleChange={this.handleChange}
-            //Afto to label einai pou pernei ws props sto form-input.component.jsx
+            
             label='Email'
             required 
           />
@@ -64,7 +64,6 @@ class SignIn extends React.Component {
             type="password" 
             value={this.state.password} 
             handleChange={this.handleChange}
-            //Afto to label einai pou pernei ws props sto form-input.component.jsx
             label='Password'
             required 
           />
@@ -83,6 +82,5 @@ class SignIn extends React.Component {
 
 export default SignIn;
 
-
-//To FormInput component stin arxi itan input
-//To CustomButton prin apo to type="submit" itan input
+/* To FormInput component stin arxi itan input
+To CustomButton prin apo to type="submit" itan input */

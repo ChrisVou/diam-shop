@@ -10,13 +10,16 @@ import { toggleCartHiden } from '../../redux/cart/cart.actions';
 
 import './cart-dropdown.styles.scss';
 
-//Boroume kai kanoume destructured to cartItems edw giati xrisimopoiisame
-//tin connect kai tin mapStateToProps
+/* .Boroume kai kanoume destructured to cartItems edw giati xrisimopoiisame
+    tin connect kai tin mapStateToProps 
+ .Sto condition edw leme an to cartItems.length einai 0 emfanise to Your cart is empty
+  alliws an exeie kapia timi enfanise sto cart-dropdown ta items 
+.Otan patame to GO TO CHECKOUT button mas paei sto /checkout page kai taftoxrona
+    me to dispatch kalei tin toggleCartHiden action creator kai eksafanizei to cart dropdown */
 const CartDropdown = ({ cartItems, history, dispatch }) => (
   <div className='cart-dropdown'>
     <div className='cart-items'>
-    {/* Sto condition edw leme an to cartItems.length einai 0 emfanise to Your cart is empty
-        alliws an exeie kapia timi enfanise sto cart-dropdown ta items */}
+    {}
       {
         cartItems.length ? (
         cartItems.map(cartItem => (
@@ -26,8 +29,6 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
       <span className='empty-message'>Your cart is empty</span>
     )}
     </div>
-    {/* Otan patame to GO TO CHECKOUT button mas paei sto /checkout page kai taftoxrona
-        me to dispatch kalei tin toggleCartHiden action creator kai eksafanizei to cart dropdown */}
     <CustomButtom onClick={() => {
       history.push('/checkout')
       dispatch(toggleCartHiden())
@@ -37,9 +38,9 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
   </div>
 );
 
-//Gia na exoume prosvasi sta cartItems xrisimopoioume tin connect
-//i cartItems einai mesa stin cart.reducer.js kai einai enas array pou krataei mesa ta stoixeia
-//id, imageUrl, name, price, quantity
+/* .Gia na exoume prosvasi sta cartItems xrisimopoioume tin connect
+   i cartItems einai mesa stin cart.reducer.js kai einai enas array pou krataei mesa ta stoixeia
+   id, imageUrl, name, price, quantity */
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems
 });

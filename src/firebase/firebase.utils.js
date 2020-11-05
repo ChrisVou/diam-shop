@@ -13,10 +13,14 @@ const config = {
   measurementId: "G-NKCZ8Y90RK"
 };
 
-//Watch video 7.12 Storing User Data In Firebase
+/* .Watch video 7.12 Storing User Data In Firebase
+  .Ama to userAuth den object den iparxei leme na return diladi na vgei eksw apo afti tin fuction
+  To userAuth einai o user otan kanei signin me to Google Account tou 
+  .Apothikevoume mesa stin database (firebase) ta data dimiourgisame tou user 
+  sto displayName: "Xristos Xristou"
+  sto email: "chrisvou@hotmail.com"
+  sto createdAt: June 24, 2020 at 10:47:38 PM UTC+3 */
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-  //Ama to userAuth den object den iparxei leme na return diladi na vgei eksw apo afti tin fuction
-  //To userAuth einai o user otan kanei signin me to Google Account tou 
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
@@ -27,10 +31,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
-    //Apothikevoume mesa stin database (firebase) ta data dimiourgisame tou user 
-    //sto displayName: "Xristos Xristou"
-    //sto email: "chrisvou@hotmail.com"
-    //sto createdAt: June 24, 2020 at 10:47:38 PM UTC+3
     try {
       await userRef.set({
         displayName,
@@ -48,8 +48,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
 firebase.initializeApp(config);
 
-//Kanoume export to firebase.auth function pou kaname import stin arxi
-//gia na to xrisimopoiisoume opou xreiazetai ston kwdika mas
+/* Kanoume export to firebase.auth function pou kaname import stin arxi
+gia na to xrisimopoiisoume opou xreiazetai ston kwdika mas */
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
@@ -57,6 +57,6 @@ const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-//Kanoume export tin firebase library se periptwsi
-// pou xriastoume kati apoli tin firebase library
+/* Kanoume export tin firebase library se periptwsi
+pou xriastoume kati apoli tin firebase library */
 export default firebase;

@@ -8,8 +8,8 @@ export const selectCollections = createSelector(
   shop => shop.collections
 );
 
-//To Object.keys metatrepei to collections se array kai pernei ta key
-//px to object {a: 1, a: 2} tha ginei array ["a", "b"]
+/* To Object.keys metatrepei to collections se array kai pernei ta key
+px to object {a: 1, a: 2} tha ginei array ["a", "b"] */
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
   collections => Object.keys(collections).map(key => collections[key])
