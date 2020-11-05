@@ -8,21 +8,18 @@
   border: 1px solid black;
   margin: 0 7.5px 15px;
   overflow: hidden;
-// to &: simenei: oti einai apo epano diladi to .menu-item pernei afto to style
-//Einai san na grafoume .menu-item:hover
+
   &:hover {
     cursor: pointer;
-  //To & .background-image kai & .content energopiounde mono otan hover
     & .background-image {
       transform: scale(1.1);
-      //To cubi-bazier mas kanei na exoume ena smooth transition
       transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
-  
+
     & .content {
       opacity: 0.9;
     }
-  }  
+  }
 
   &.large {
     height: 380px;
@@ -43,8 +40,6 @@
     background-size: cover;
   }
 
- //Kai edw einai san na grafoume .menu-item .content { css code }
- //To sass mas to kanei emfolevmeno (nested) 
   .content {
     height: 90px;
     padding: 0 25px;

@@ -1,10 +1,6 @@
-//Opote kaloume to $sub-color tha mas fernei to grey
-// kai opote kaloume to $main-color tha mas fernei to black
 $sub-color: grey;
 $main-color: black;
 
-//Opou xrisimopoioume to @include shrinkLabel(); tha mas fernei
-// oti exoume grapsei mesa sto @mixin shrinkLabel { }
 @mixin shrinkLabel {
   top: -14px;
   font-size: 12px;

@@ -30,8 +30,6 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   );
 };
 
-/* .To dispatch einai enas tropos tis redux gia na tis pei oti object mou
- peraseis tha einai ena action object opou tha to perasw se kathe reducer */
 const mapDispatchToProps = dispatch => ({
   clearItem: item => dispatch(clearItemFromCart(item)),
   addItem: item => dispatch(addItem(item)),

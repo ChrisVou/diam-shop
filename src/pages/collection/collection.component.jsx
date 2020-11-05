@@ -23,8 +23,6 @@ const CollectionPage = ({ collection }) => {
   );
 };
 
-/* I ownProps mas dinei oles tiw props pou pernoume apo tin CollectionPage component
-simberilamvanomenou kai to math.path item pou exoume sto deftero Route tou shop.component.jsx */
 const mapStateToProps = (state, ownProps) => ({
   collection: selectCollection(ownProps.match.params.collectionId)(state)
 });

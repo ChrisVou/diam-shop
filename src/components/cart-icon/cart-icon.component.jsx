@@ -20,8 +20,6 @@ const mapDispatchToProps = dispatch => ({
   toggleCartHiden: () => dispatch(toggleCartHiden())
 });
 
-//Kanoume Memoization, mia texniki gia na kanoume caching tin return value.
-//Xrisimopoioume tin library reselect, vl arxeio cart.selectors.js
 const mapStateToProps = createStructuredSelector({
   itemCount: selectCartItemsCount
 });
