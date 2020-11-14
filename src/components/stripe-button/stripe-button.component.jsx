@@ -17,7 +17,7 @@ const onToken = token => {
       billingAddress
       shippingAddress
       image='https://svgshare.com/i/RDD.svg'
-      description={`Your total is €€{price}`}
+      description={`Your total is €${price}`}
       amount={priceForStripe}
       panelLabel='Pay Now'
       token={onToken}
